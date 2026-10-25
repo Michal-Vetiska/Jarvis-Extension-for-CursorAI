@@ -1,0 +1,1 @@
+"""Native macOS automation helpers."""

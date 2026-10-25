@@ -1,0 +1,52 @@
+[app]
+name = "ADAM"
+language = "cs"
+data_dir = "~/Library/Application Support/JARVIS"
+
+[ipc]
+socket_name = "jarvis.sock"
+
+[llm]
+provider = "lmstudio"
+base_url = "http://192.168.0.192:1234/v1"
+api_key = "lm-studio"
+model = "google/gemma-4-e4b"
+temperature = 0.3
+timeout_seconds = 45
+
+[voice]
+# Wake word přes Python mic je na macOS nespolehlivý (TCC). Použij Push-to-talk v appce.
+wake_enabled = false
+wake_threshold = 0.55
+wake_phrases = ["adame", "adam", "hej adame", "hej adam", "ahoj adame", "hey adam"]
+push_to_talk_hotkey = "ctrl+space"
+stt_backend = "mlx_whisper"
+stt_model = "mlx-community/whisper-small-mlx"
+stt_language = "cs"
+tts_voice = "Zuzana"
+tts_fallback_voice = "Samantha"
+sample_rate = 16000
+
+[cursor]
+agent_bin = "agent"
+cursor_bin = "cursor"
+agent_path_hint = "~/.local/bin"
+print_mode = true
+force = true
+trust = true
+output_format = "stream-json"
+default_timeout_seconds = 900
+
+[devserver]
+health_timeout_seconds = 90
+health_poll_interval_seconds = 1.0
+keep_alive_default = true
+
+[safety]
+require_confirmation_levels = [
+  "PROJECT_MODIFICATION",
+  "PROCESS_EXECUTION",
+  "DESTRUCTIVE_ACTION",
+  "EXTERNAL_ACTION",
+]
+allow_arbitrary_shell = false
